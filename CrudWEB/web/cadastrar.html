@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <link href="estilos/meuestilo.css" rel="stylesheet">
+        <title>Cadastrar produto</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="formi2">
+        <h1>Menu de cadastro de produtos</h1>
+        <form action="ControleProduto" method="POST">
+            <div class="form-row">
+                <div class="form-field-group">
+                    <label for="txtnome">Nome:</label><br>
+                    <input type="text" id="txtnome" name="txtnome" placeholder="Insira o nome do produto" autocomplete="off" required>
+                </div>
+                <div class="form-field-group">
+                    <label for="txtpreco">Preço:</label><br>
+                    <input type="text" id="txtpreco" name="txtpreco" placeholder="Insira o preço em reais" autocomplete="off" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-field-group">
+                    <label for="txtdescricao">Descrição:</label><br>
+                    <input type="text" id="txtdescricao" name="txtdescricao" placeholder="Insira a descrição do produto" autocomplete="off" required>
+                </div>
+                <div class="form-field-group">
+                    <label for="txtquantidade">Quantidade:</label><br>
+                    <input type="text" id="txtquantidade" name="txtquantidade" placeholder="Insira a quantidade" autocomplete="off" required>
+                </div>
+            </div>
+            
+            <div class="form-buttons">
+                <input type="submit" name="op" value="CADASTRAR" id="bt1">
+                <input type="button" value="RETORNAR" id="btr" onclick="window.location.href='principal.html'">
+            </div>
+        </form>
+        </div>
+    </body>
+</html>
+    

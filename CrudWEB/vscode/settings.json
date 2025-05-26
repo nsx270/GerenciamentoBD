@@ -1,0 +1,12 @@
+{
+    "java.project.referencedLibraries": [
+        "/Users/pedro/Desktop/Facul/CrudWEB/lib" // Caminho para suas bibliotecas
+    ],
+    "tomcat.useWTP": true,
+    "tomcat.websources": [
+        {
+            "path": "web",
+            "docBase": "web"
+        }
+    ]
+}

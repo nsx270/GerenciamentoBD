@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="estilos/meuestilo.css" rel="stylesheet">
+        <title>Loja Gamer!</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="formi">
+        <form action="ControleProduto" method="GET">
+            <div class="title">
+                <h1 id="titulo">Menu principal de gerenciamento de produtos</h1>
+            <BR>
+            <div class="label">
+                Escolha uma das opções a seguir:
+            </div>
+            <div class="botoes">
+            <input type="button" value="CADASTRAR" id="bt1" onclick="window.location.href='cadastrar.html'">
+            <input type="button" value="ATUALIZAR" id="bt2" onclick="window.location.href='ControleProduto?op=listarParaAtualizar'">
+            <input type="button" value="DELETAR" id="bt3" onclick="window.location.href='ControleProduto?op=listarParaDeletar'">
+            <input type="button" value="CONSULTAR" id="bt4" onclick="window.location.href='consultarProduto.jsp'">
+            </div>
+        </form>
+        </div>
+    </body>
+</html>
+
