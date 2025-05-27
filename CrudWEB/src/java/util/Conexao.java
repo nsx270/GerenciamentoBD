@@ -1,6 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ *
+ * @author pedro
  */
 package util;
 
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 
 public class Conexao {
-
+    // Conexão com o banco de dados no MySQL
     public static Connection getConexao() throws ClassNotFoundException, SQLException {
         Class.forName("com.mysql.jdbc.Driver");
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/aula_ioo","root", "");

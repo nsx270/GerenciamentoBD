@@ -1,3 +1,7 @@
+/**
+ *
+ * @author pedro
+ */
 package model;
 
 public class Produto {
@@ -8,6 +12,9 @@ public class Produto {
     private String descricao;
     private String quantidade;
 
+    // Getters e setters
+
+    
     public int getId() {
         return id;
     }

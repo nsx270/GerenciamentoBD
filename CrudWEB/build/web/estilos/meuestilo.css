@@ -1,7 +1,7 @@
 body {
      background: 
         linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-        url('/CrudWEB/imagens/giffundo.gif') center/cover fixed;
+        url('/CrudWEB/imagens/fundo.jpg') center/cover fixed;
     margin: 0;
     padding: 0;
     height: 100vh;
@@ -11,14 +11,49 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+@keyframes cycleColors {
+  0%   {color: #990000;}
+  20%  {color: #003366;}
+  40%  {color: #004d00;}
+  60%  {color: #4B0082;}
+  80%  {color: #1a1a1a;}
+  100% {color: #990000;}
+}
+
+@keyframes cycleBackgroundColors {
+  0%   {background-color: #990000;}
+  20%  {background-color: #003366;}
+  40%  {background-color: #004d00;}
+  60%  {background-color: #4B0082;}
+  80%  {background-color: #1a1a1a;}
+  100% {background-color: #990000;}
+}
+
+.titulo1{
+    text-align: center;
+    position: fixed;
+    top: 5rem;
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    animation-name: cycleColors;
+    animation-duration: 20s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .formi {
-    background-color: rgba(255,255,255,0.1);
-    padding: 2.5rem;
+    padding: 3.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 600px;
     text-align: center;
+    animation-name: cycleBackgroundColors;
+    animation-duration: 20s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 .formi2 {
@@ -31,27 +66,22 @@ body {
     text-align: left;
 }
 
-@keyframes cycleColors {
-    0%   {color: #E91E63;} /* Rosa Vibrante */
-    16%  {color: #FF9800;} /* Laranja */
-    32%  {color: #FFEB3B;} /* Amarelo */
-    48%  {color: #4CAF50;} /* Verde */
-    64%  {color: #2196F3;} /* Azul Brilhante */
-    80%  {color: #9C27B0;} /* Roxo */
-    100% {color: #E91E63;} /* Volta ao Rosa para um ciclo suave */
+.formi3 {
+    background-color: rgba(255,255,255,0.8);
+    padding: 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 700px;
+    text-align: left;
 }
 
-
 #titulo {
+    color: white;
     font-size: 2rem;
-    color: #2c3e50; 
     font-weight: 600;
     margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
-    animation-name: cycleColors;
-    animation-duration: 30s; 
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
 }
 
 .botoes {
@@ -62,11 +92,8 @@ body {
 }
 
 .label{
+    color: white;
     font-size: 16px;
-    animation-name: cycleColors;
-    animation-duration: 30s; 
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 .form-row {
@@ -95,7 +122,16 @@ body {
     font-size: 0.95rem;
 }
 
-#bt1, #bt2, #bt3, #bt4, #btr {
+.inputlogin {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.95rem;
+}
+
+#bt1, #bt2, #bt3, #bt4, #bt5, #btr {
     padding: 12px 24px;
     font-size: 1rem;
     border: none;
@@ -125,12 +161,17 @@ body {
     color: black;
 }
 
+#bt5{
+    background-color: #c9c5c5;
+    color: black;
+}
+
 #btr{ 
     background-color: #6c757d; 
     color: white;
 }
 
-#bt1:hover, #bt2:hover, #bt3:hover, #bt4:hover, #btr:hover {
+#bt1:hover, #bt2:hover, #bt3:hover, #bt4:hover, #bt5:hover, #btr:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 }
@@ -149,6 +190,10 @@ body {
 
 #bt4:hover{
     background-color: #00cccc;
+}
+
+#bt5:hover{
+    background-color: #a3a0a0;  
 }
 
 #btr:hover{

@@ -2,6 +2,7 @@
     Document   : editarproduto
     Created on : 24 de mai. de 2025, 12:10:27
     Author     : pedro
+    Página de edição dos produtos
 --%>
 
 <%@page import="model.Produto"%>

@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author pedro
  */
 package controller;
 
@@ -15,10 +14,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 
-/**
- *
- * @author proft
- */
 @WebServlet(name = "Controller_Autenticacao", urlPatterns = {"/Controller_Autenticacao"})
 public class Controller_Autenticacao extends HttpServlet {
 
@@ -50,18 +45,18 @@ public class Controller_Autenticacao extends HttpServlet {
                 try {
                     if (usu.autenticar()) {
                         mensagem = "Logado com sucesso!!";
-                        pagina = "sucessoautenticacao.jsp";
+                        pagina = "info/sucessoautenticacao.jsp";
                     } else {
                         mensagem = "Login ou senha não combinam";
-                        pagina = "erroautenticacao.jsp";
+                        pagina = "info/erroautenticacao.jsp";
                     }
 
                 } catch (SQLException ex) {
                     mensagem = "Erro SQL: " + ex.getMessage();
-                    pagina = "erro.jsp";
+                    pagina = "info/erro.jsp";
                 } catch (ClassNotFoundException ex) {
                     mensagem = "Erro CNF: " + ex.getMessage();
-                    pagina = "erro.jsp";
+                    pagina = "info/erro.jsp";
                 }
             }
 

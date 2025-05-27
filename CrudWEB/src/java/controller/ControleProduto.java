@@ -1,3 +1,7 @@
+/**
+ *
+ * @author pedro
+ */
 package controller;
 
 import DAO.ProdutoDAO;
@@ -23,14 +27,14 @@ public class ControleProduto extends HttpServlet {
             String op = request.getParameter("op");
 
             ProdutoDAO pdao = new ProdutoDAO();
-            Produto p = new Produto(); // Objeto Produto reutilizado para algumas operações
+            Produto p = new Produto();
             String mensagem = "";
             String paginaDestino = "";
 
             if (op == null || op.isEmpty()) {
-                // Se 'op' for nulo ou vazio, define uma mensagem de erro e uma página de destino padrão (ou trata de outra forma)
+                // Se 'op' for nulo ou vazio, define uma mensagem de erro e uma página de destino padrão
                 mensagem = "Operação não especificada ou inválida.";
-                paginaDestino = "principal.html"; // Ou uma página de erro dedicada
+                paginaDestino = "principal.html";
                 request.setAttribute("msg", mensagem);
             } else if (op.equals("CADASTRAR")) {
                 String nome = request.getParameter("txtnome");
@@ -40,11 +44,11 @@ public class ControleProduto extends HttpServlet {
                 } catch (NumberFormatException e) {
                     mensagem = "ERRO: Preço inválido. " + e.getMessage();
                     request.setAttribute("msg", mensagem);
-                    paginaDestino = "cadastrar.html"; // Volta para a página de cadastro
-                    // Adicione aqui a lógica para reenviar os dados já preenchidos se desejar
+                    // Volta para a página de cadastro
+                    paginaDestino = "cadastrar.html";
                 }
-
-                if (mensagem.isEmpty()) { // Prossegue apenas se o preço for válido
+                // Prossegue apenas se o preço for válido
+                if (mensagem.isEmpty()) {
                     String descricao = request.getParameter("txtdescricao");
                     String quantidade = request.getParameter("txtquantidade");
                     p.setNome(nome);
@@ -58,7 +62,7 @@ public class ControleProduto extends HttpServlet {
                         mensagem = "ERRO ao cadastrar: " + ex.getMessage();
                     }
                     request.setAttribute("msg", mensagem);
-                    paginaDestino = "resultadocadastrar.jsp";
+                    paginaDestino = "info/resultadocadastrar.jsp";
                 }
             } else if (op.equals("listarParaDeletar")) {
                  try {
@@ -159,7 +163,6 @@ public class ControleProduto extends HttpServlet {
                     }
                 }
                 request.setAttribute("msg", mensagem);
-                // Não há 'return' aqui, o dispatcher final cuidará do forward se paginaDestino estiver setada
             
             } else if (op.equals("SALVAR_ATUALIZACAO")) {
                 String idProdutoAtualizarStr = request.getParameter("produtoId");
@@ -238,18 +241,13 @@ public class ControleProduto extends HttpServlet {
             } else {
                 // Operação 'op' desconhecida
                  mensagem = "Operação '" + op + "' não reconhecida.";
-                 paginaDestino = "principal.html"; // Ou uma página de erro
+                 paginaDestino = "principal.html";
                  request.setAttribute("msg", mensagem);
             }
             
-            // --- Bloco de Despacho Final Robusto ---
-            // Removemos os 'return' dos blocos 'carregarParaEditar' para centralizar o forward aqui,
-            // exceto se um erro crítico impedir a continuação.
-            // Se uma página de destino foi definida, tenta fazer o forward.
             String finalMessage = (String) request.getAttribute("msg");
 
             if (paginaDestino != null && !paginaDestino.isEmpty()) {
-                // System.out.println("Tentando encaminhar para: " + paginaDestino + " com mensagem: " + finalMessage); // Para debug no console do servidor
                 try {
                     request.getRequestDispatcher(paginaDestino).forward(request, response);
                 } catch (ServletException | IOException e) {
@@ -271,8 +269,6 @@ public class ControleProduto extends HttpServlet {
                     }
                 }
             } else {
-                // Se paginaDestino não foi definida por algum motivo, mas op era válido e não tratado acima
-                // ou se op era nulo/vazio e não tratado no início.
                 if (!response.isCommitted()) {
                     out.println("<!DOCTYPE html><html><head><title>Erro de Fluxo</title></head><body>");
                     out.println("<h1>Erro de Fluxo no Servlet</h1>");

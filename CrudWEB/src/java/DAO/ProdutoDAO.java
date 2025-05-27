@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author pedro
  */
 package DAO;
 
@@ -15,7 +14,7 @@ import model.Produto;
 import util.Conexao;
 
 public class ProdutoDAO {
-    
+    // Método de cadastro
     public void cadastrar(Produto prod) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
         String SQL = "insert into produto (nome, preco, descricao, quantidade) values (?,?,?,?)";
@@ -27,7 +26,7 @@ public class ProdutoDAO {
         comando.execute();
         con.close();
     }
-    
+    // Método para deletar
     public void deletar(Produto prod) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
         String SQL = "delete from produto where id = ?";
@@ -36,7 +35,7 @@ public class ProdutoDAO {
         comando.execute();
         con.close();
     }
-    
+    // Método para atualizar
     public void atualizar(Produto prod) throws ClassNotFoundException, SQLException {
     Connection con = Conexao.getConexao();
     String SQL = "update produto set nome = ?, preco = ?, descricao = ?, quantidade = ? where id = ?";
@@ -49,7 +48,7 @@ public class ProdutoDAO {
     comando.execute();
     con.close();
 }    
-    
+    // Método para consultar por ID específico
     public Produto consultarById(Produto prod) throws ClassNotFoundException, SQLException {
     Connection con = Conexao.getConexao();
     String SQL = "select * from produto where id = ?";
@@ -67,7 +66,7 @@ public class ProdutoDAO {
     con.close();
     return p;
 }
-    
+    // Método que exibe todos itens cadastrados
     public List<Produto> consultarTodos() throws ClassNotFoundException, SQLException {
     Connection con = Conexao.getConexao();
     String SQL = "select * from produto";

@@ -2,8 +2,8 @@
     Document   : atualizar
     Created on : 24 de mai. de 2025, 12:10:03
     Author     : pedro
+    Página de atualização dos produtos/dados inseridos
 --%>
-
 <%@page import="model.Produto"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author pedro
  */
 package util;
 
@@ -9,12 +8,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author pedro
- */
 public class FabricaConexao {
-
+    // Conexão com o banco de dados no MySQL
     public static Connection getConexaoMySQL() throws ClassNotFoundException, SQLException {
         String DRIVER = "com.mysql.cj.jdbc.Driver";
         String URL = "jdbc:mysql://localhost:3306/teste_sqlinjection";

@@ -2,6 +2,7 @@
     Document   : consultarProduto
     Created on : 24 de mai. de 2025, 12:31:17
     Author     : pedro
+    Página de consulta de produtos
 --%>
 
 <%@page import="model.Produto"%>

@@ -2,6 +2,7 @@
     Document   : deletar
     Created on : 24 de mai. de 2025, 11:53:05
     Author     : pedro
+    Página onde se seleciona e deleta os produtos
 --%>
 
 <%@page import="model.Produto"%>

@@ -1,7 +1,8 @@
 <%-- 
-    Document   : indexjsp
-    Created on : 10/05/2022, 17:21:08
-    Author     : proft
+    Document   : index
+    Created on : 24 de mai. de 2025, 12:31:17
+    Author     : pedro
+    Página principal
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,6 +11,9 @@
     <head>
         <style>
             body {
+                background: 
+                    linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                    url('/CrudWEB/imagens/fundo.jpg') center/cover fixed;
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 margin: 0;
                 padding: 0;
@@ -18,7 +22,6 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             }
             
             .login-container {
@@ -28,7 +31,8 @@
                 box-shadow: 0 4px 20px rgba(0,0,0,0.1);
                 width: 100%;
                 max-width: 450px;
-                text-align: center;
+                text-align: left;
+                
             }
             
             #titulo {
@@ -96,16 +100,18 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div class="login-container"
         <h1 id="titulo">Página de Login de funcionários</h1>
         <form action="Controller_Autenticacao" method="post">
             <BR>
             <div>
-            Login: <br><input type="text" name="txtlogin" id="log1" placeholder="Insira seu login" autocomplete="off" required><BR>
+                Login: <br> <input type="text" name="txtlogin" id="log1" placeholder="Insira seu login" autocomplete="off" required><BR>
             <br>
-            Senha: <br><input type="password" name="txtsenha" id="log2" placeholder="Insira sua senha" autocomplete="off" required><BR>
+            Senha: <br> <input type="password" name="txtsenha" id="log2" placeholder="Insira sua senha" autocomplete="off" required><BR>
             </div>
             <BR>
             <input type="submit" name="operacao" value="Login" id="btl">
         </form>
+        </div>
     </body>
 </html>

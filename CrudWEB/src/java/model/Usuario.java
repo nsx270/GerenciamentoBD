@@ -1,7 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *
+ * @author pedro
  */
 package model;
 
@@ -11,10 +10,6 @@ import java.sql.SQLException;
 import java.sql.PreparedStatement;
 import util.FabricaConexao;
 
-/**
- *
- * @author proft
- */
 public class Usuario {
 
     private int id;
@@ -22,7 +17,9 @@ public class Usuario {
     private String login;
     private String senha;
     private String nivelacesso;
-
+    
+    // Getters e setters
+    
     public int getId() {
         return id;
     }
@@ -65,9 +62,9 @@ public class Usuario {
 
     public boolean autenticar() throws ClassNotFoundException, SQLException {
         boolean aux = false;
-        Connection con = null; // Declarar fora do try para poder fechar no finally
-        PreparedStatement comando = null; // Declarar fora do try para poder fechar no finally
-        ResultSet resultado = null; // Declarar fora do try para poder fechar no finally
+        Connection con = null; 
+        PreparedStatement comando = null; 
+        ResultSet resultado = null;
 
         try {
             //Carregar Driver e criar conexao
@@ -78,19 +75,18 @@ public class Usuario {
             comando = con.prepareStatement(sql);
 
             // Definir os valores para os placeholders (?)
-            // A contagem dos parâmetros começa em 1
-            comando.setString(1, this.login); // Usa o login do objeto Usuario
-            comando.setString(2, this.senha); // Usa a senha do objeto Usuario
+            comando.setString(1, this.login); 
+            comando.setString(2, this.senha);
 
             // Executar e tratar resultados
-            resultado = comando.executeQuery(); // Não passa SQL aqui, pois já foi preparado
+            resultado = comando.executeQuery();
 
             if (resultado.next()) {
                 // Se encontrou, preenche os dados do usuário no objeto atual
                 this.setId(resultado.getInt("id"));
                 this.setNome(resultado.getString("nome"));
-                this.setLogin(resultado.getString("login")); // Pode ser útil para confirmar/atualizar
-                this.setSenha(resultado.getString("senha")); // Geralmente não se redefine a senha aqui por segurança
+                this.setLogin(resultado.getString("login")); 
+                this.setSenha(resultado.getString("senha")); 
                 this.setNivelacesso(resultado.getString("nivelacesso"));
                 aux = true;
             }
