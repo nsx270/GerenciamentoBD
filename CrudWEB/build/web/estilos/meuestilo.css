@@ -12,13 +12,12 @@ body {
 }
 
 @keyframes cycleColors {
-  0%   {color: #990000;}
-  20%  {color: #003366;}
-  40%  {color: #004d00;}
-  60%  {color: #4B0082;}
-  80%  {color: #1a1a1a;}
-  100% {color: #990000;}
+  0%    {color: #009739;}
+  33%   {color: #FEDD00;}
+  66%   {color: #FFFFFF;}
+  100%  {color: #009739;}
 }
+
 
 @keyframes cycleBackgroundColors {
   0%   {background-color: #990000;}
@@ -30,6 +29,7 @@ body {
 }
 
 .titulo1{
+    color: white;
     text-align: center;
     position: fixed;
     top: 5rem;
@@ -37,21 +37,17 @@ body {
     font-weight: 600;
     margin-bottom: 1.5rem;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-    animation-name: cycleColors;
-    animation-duration: 20s; 
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
 }
 
 .formi {
-    padding: 3.5rem;
+    padding: 5.5rem;
     border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 20px rgba(0,0,0,1);
     width: 100%;
     max-width: 600px;
     text-align: center;
     animation-name: cycleBackgroundColors;
-    animation-duration: 20s; 
+    animation-duration: 30s; 
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -198,6 +194,13 @@ body {
 
 #btr:hover{
     background-color: #5a6268;
+}
+
+.palavra{
+    animation-name: cycleColors;
+    animation-duration: 3s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 .form-buttons {

@@ -14,7 +14,6 @@ import model.Produto;
 import util.Conexao;
 
 public class ProdutoDAO {
-    // Método de cadastro
     public void cadastrar(Produto prod) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
         String SQL = "insert into produto (nome, preco, descricao, quantidade) values (?,?,?,?)";
@@ -22,11 +21,10 @@ public class ProdutoDAO {
         comando.setString(1, prod.getNome());
         comando.setDouble(2, prod.getPreco());
         comando.setString(3, prod.getDescricao());
-        comando.setString(4, prod.getQuantidade());
+        comando.setInt(4, prod.getQuantidade());
         comando.execute();
         con.close();
     }
-    // Método para deletar
     public void deletar(Produto prod) throws ClassNotFoundException, SQLException {
         Connection con = Conexao.getConexao();
         String SQL = "delete from produto where id = ?";
@@ -35,7 +33,6 @@ public class ProdutoDAO {
         comando.execute();
         con.close();
     }
-    // Método para atualizar
     public void atualizar(Produto prod) throws ClassNotFoundException, SQLException {
     Connection con = Conexao.getConexao();
     String SQL = "update produto set nome = ?, preco = ?, descricao = ?, quantidade = ? where id = ?";
@@ -43,12 +40,11 @@ public class ProdutoDAO {
     comando.setString(1, prod.getNome());
     comando.setDouble(2, prod.getPreco());
     comando.setString(3, prod.getDescricao());
-    comando.setString(4, prod.getQuantidade());
+    comando.setInt(4, prod.getQuantidade());
     comando.setInt(5, prod.getId());
     comando.execute();
     con.close();
 }    
-    // Método para consultar por ID específico
     public Produto consultarById(Produto prod) throws ClassNotFoundException, SQLException {
     Connection con = Conexao.getConexao();
     String SQL = "select * from produto where id = ?";
@@ -61,12 +57,11 @@ public class ProdutoDAO {
         p.setNome(rs.getString("nome")); 
         p.setPreco(rs.getDouble("preco"));
         p.setDescricao(rs.getString("descricao"));
-        p.setQuantidade(rs.getString("quantidade"));
+        p.setQuantidade(rs.getInt("quantidade"));
     }
     con.close();
     return p;
 }
-    // Método que exibe todos itens cadastrados
     public List<Produto> consultarTodos() throws ClassNotFoundException, SQLException {
     Connection con = Conexao.getConexao();
     String SQL = "select * from produto";
@@ -74,13 +69,13 @@ public class ProdutoDAO {
     ResultSet rs = comando.executeQuery();        
     List<Produto> lprod = new ArrayList<Produto>();
     while(rs.next()){
-        Produto prod = new Produto();
-        prod.setId(rs.getInt("id"));
-        prod.setNome(rs.getString("nome"));
-        prod.setPreco(rs.getDouble("preco")); 
-        prod.setDescricao(rs.getString("descricao"));
-        prod.setQuantidade(rs.getString("quantidade"));
-        lprod.add(prod);
+        Produto prod_item = new Produto();
+        prod_item.setId(rs.getInt("id"));
+        prod_item.setNome(rs.getString("nome"));
+        prod_item.setPreco(rs.getDouble("preco")); 
+        prod_item.setDescricao(rs.getString("descricao"));
+        prod_item.setQuantidade(rs.getInt("quantidade"));
+        lprod.add(prod_item);
     }
     con.close();
     return lprod;

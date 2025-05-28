@@ -46,7 +46,7 @@
             String mensagem = (String) request.getAttribute("msg");
             if (mensagem != null) {
         %>
-            <p style="color: <%= mensagem.startsWith("ERRO") ? "red" : "green" %>;"><%= mensagem %></p>
+            <p style="color: <%= mensagem.startsWith("ERRO") ? "red" : "red" %>;"><%= mensagem %></p>
         <%
             }
         %>

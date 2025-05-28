@@ -10,7 +10,7 @@ public class Produto {
     private String nome;
     private double preco;
     private String descricao;
-    private String quantidade;
+    private int quantidade;
 
     // Getters e setters
 
@@ -47,11 +47,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public String getQuantidade() {
+    public int getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(String quantidade) {
+    public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
 

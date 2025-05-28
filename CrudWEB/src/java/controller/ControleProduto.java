@@ -32,29 +32,44 @@ public class ControleProduto extends HttpServlet {
             String paginaDestino = "";
 
             if (op == null || op.isEmpty()) {
-                // Se 'op' for nulo ou vazio, define uma mensagem de erro e uma página de destino padrão
                 mensagem = "Operação não especificada ou inválida.";
                 paginaDestino = "principal.html";
                 request.setAttribute("msg", mensagem);
             } else if (op.equals("CADASTRAR")) {
                 String nome = request.getParameter("txtnome");
                 double preco = 0;
+                int quantidadeInt = 0;
+                String quantidadeStr = request.getParameter("txtquantidade");
+
                 try {
                     preco = Double.parseDouble(request.getParameter("txtpreco"));
                 } catch (NumberFormatException e) {
-                    mensagem = "ERRO: Preço inválido. " + e.getMessage();
+                    mensagem = "Preço inválido.";
                     request.setAttribute("msg", mensagem);
-                    // Volta para a página de cadastro
-                    paginaDestino = "cadastrar.html";
+                    paginaDestino = "cadastrar.jsp";
                 }
-                // Prossegue apenas se o preço for válido
+
+                if (mensagem.isEmpty()) {
+                    try {
+                        quantidadeInt = Integer.parseInt(quantidadeStr);
+                        if (quantidadeInt < 0) {
+                            mensagem = "Quantidade inválida";
+                            request.setAttribute("msg", mensagem);
+                            paginaDestino = "cadastrar.jsp";
+                        }
+                    } catch (NumberFormatException e) {
+                        mensagem = "Quantidade inválida.";
+                        request.setAttribute("msg", mensagem);
+                        paginaDestino = "cadastrar.jsp";
+                    }
+                }
+                
                 if (mensagem.isEmpty()) {
                     String descricao = request.getParameter("txtdescricao");
-                    String quantidade = request.getParameter("txtquantidade");
                     p.setNome(nome);
                     p.setPreco(preco);
                     p.setDescricao(descricao);
-                    p.setQuantidade(quantidade);
+                    p.setQuantidade(quantidadeInt);
                     try {
                         pdao.cadastrar(p);
                         mensagem = "Cadastrado com sucesso.";
@@ -79,7 +94,7 @@ public class ControleProduto extends HttpServlet {
                 if (idProdutoStrDel != null && !idProdutoStrDel.isEmpty()) {
                     try {
                         int idProduto = Integer.parseInt(idProdutoStrDel);
-                        p.setId(idProduto); // Reutiliza o objeto 'p'
+                        p.setId(idProduto);
                         pdao.deletar(p);
                         mensagem = "Produto deletado com sucesso!";
                     } catch (NumberFormatException ex) {
@@ -90,7 +105,6 @@ public class ControleProduto extends HttpServlet {
                 } else {
                     mensagem = "ERRO: Nenhum produto selecionado para deletar.";
                 }
-                // Sempre tenta recarregar a lista para a página de deletar
                 try {
                     List<Produto> listaProdutos = pdao.consultarTodos();
                     request.setAttribute("listaProdutos", listaProdutos);
@@ -115,16 +129,15 @@ public class ControleProduto extends HttpServlet {
                 if (idProdutoStrEdit != null && !idProdutoStrEdit.isEmpty()) {
                     try {
                         int idProduto = Integer.parseInt(idProdutoStrEdit);
-                        Produto produtoParaEditar = new Produto(); // Cria novo objeto para edição
+                        Produto produtoParaEditar = new Produto(); 
                         produtoParaEditar.setId(idProduto);
                         produtoParaEditar = pdao.consultarById(produtoParaEditar);
                         
                         if (produtoParaEditar != null && produtoParaEditar.getNome() != null) {
                              request.setAttribute("produtoParaEditar", produtoParaEditar);
-                             paginaDestino = "editarProduto.jsp"; // Define a página de destino aqui
+                             paginaDestino = "editarProduto.jsp"; 
                         } else {
                             mensagem = "ERRO: Produto com ID " + idProduto + " não encontrado.";
-                            // Prepara para voltar para a lista de atualização se o produto não for encontrado
                             paginaDestino = "atualizar.jsp";
                             try {
                                 List<Produto> listaProdutos = pdao.consultarTodos();
@@ -135,7 +148,7 @@ public class ControleProduto extends HttpServlet {
                         }
                     } catch (NumberFormatException ex) {
                         mensagem = "ERRO: ID do produto inválido para edição. " + ex.getMessage();
-                        paginaDestino = "atualizar.jsp"; // Volta para a lista
+                        paginaDestino = "atualizar.jsp"; 
                          try {
                             List<Produto> listaProdutos = pdao.consultarTodos();
                             request.setAttribute("listaProdutos", listaProdutos);
@@ -144,7 +157,7 @@ public class ControleProduto extends HttpServlet {
                         }
                     } catch (ClassNotFoundException | SQLException ex) {
                         mensagem = "ERRO ao carregar produto para edição: " + ex.getMessage();
-                        paginaDestino = "atualizar.jsp"; // Volta para a lista
+                        paginaDestino = "atualizar.jsp"; 
                          try {
                             List<Produto> listaProdutos = pdao.consultarTodos();
                             request.setAttribute("listaProdutos", listaProdutos);
@@ -154,7 +167,7 @@ public class ControleProduto extends HttpServlet {
                     }
                 } else {
                     mensagem = "ERRO: Nenhum produto selecionado para edição.";
-                    paginaDestino = "atualizar.jsp"; // Volta para a lista
+                    paginaDestino = "atualizar.jsp"; 
                      try {
                         List<Produto> listaProdutos = pdao.consultarTodos();
                         request.setAttribute("listaProdutos", listaProdutos);
@@ -169,28 +182,36 @@ public class ControleProduto extends HttpServlet {
                 String nome = request.getParameter("txtnome");
                 String precoStr = request.getParameter("txtpreco");
                 String descricao = request.getParameter("txtdescricao");
-                String quantidade = request.getParameter("txtquantidade");
+                String quantidadeStr = request.getParameter("txtquantidade");
 
-                if (idProdutoAtualizarStr != null && !idProdutoAtualizarStr.isEmpty() && precoStr != null && !precoStr.isEmpty()) {
+                if (idProdutoAtualizarStr != null && !idProdutoAtualizarStr.isEmpty() && 
+                    precoStr != null && !precoStr.isEmpty() &&
+                    quantidadeStr != null && !quantidadeStr.isEmpty()) {
                     try {
                         Produto produtoAtualizado = new Produto();
                         produtoAtualizado.setId(Integer.parseInt(idProdutoAtualizarStr));
                         produtoAtualizado.setNome(nome);
                         produtoAtualizado.setPreco(Double.parseDouble(precoStr));
                         produtoAtualizado.setDescricao(descricao);
-                        produtoAtualizado.setQuantidade(quantidade);
+                        int quantidadeInt = Integer.parseInt(quantidadeStr);
+                        if (quantidadeInt < 0) {
+                             mensagem = "ERRO: Quantidade não pode ser negativa.";
+                             // Como 'paginaDestino' é 'atualizar.jsp' de qualquer forma e a lista é recarregada,
+                             // a mensagem de erro será exibida. Não é necessário alterar paginaDestino aqui.
+                        } else {
+                            produtoAtualizado.setQuantidade(quantidadeInt);
+                            pdao.atualizar(produtoAtualizado);
+                            mensagem = "Produto atualizado com sucesso!";
+                        }
 
-                        pdao.atualizar(produtoAtualizado);
-                        mensagem = "Produto atualizado com sucesso!";
                     } catch (NumberFormatException ex) {
-                        mensagem = "ERRO: Dados numéricos inválidos para atualização (ID ou Preço). " + ex.getMessage();
+                        mensagem = "ERRO: Dados numéricos inválidos para atualização (ID, Preço ou Quantidade).";
                     } catch (ClassNotFoundException | SQLException ex) {
                         mensagem = "ERRO ao atualizar produto: " + ex.getMessage();
                     }
                 } else {
                     mensagem = "ERRO: Dados incompletos para atualização.";
                 }
-                // Sempre tenta recarregar a lista para a página de atualização
                 try {
                     List<Produto> listaProdutos = pdao.consultarTodos();
                     request.setAttribute("listaProdutos", listaProdutos);
@@ -239,7 +260,6 @@ public class ControleProduto extends HttpServlet {
                 request.setAttribute("msg", mensagem);
                 paginaDestino = "consultarProduto.jsp";
             } else {
-                // Operação 'op' desconhecida
                  mensagem = "Operação '" + op + "' não reconhecida.";
                  paginaDestino = "principal.html";
                  request.setAttribute("msg", mensagem);
@@ -279,8 +299,8 @@ public class ControleProduto extends HttpServlet {
                     out.println("</body></html>");
                 }
             }
-        } // Fecha o try-with-resources para 'out'
-    } // Fecha o processRequest
+        } 
+    } 
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

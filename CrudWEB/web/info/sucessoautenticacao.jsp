@@ -113,7 +113,7 @@
                 <div><span class="rotulo">Nome:</span> <span class="valor"><%=usu.getNome()%></span></div>
                 <div><span class="rotulo">Login:</span> <span class="valor"><%=usu.getLogin()%></span></div>
                 <div><span class="rotulo">Senha:</span> <span class="valor"><%=usu.getSenha()%></span></div>
-                <div><span class="rotulo">Nível de acesso:</span> <span class="valor"><%=usu.getNivelacesso()%></span></div>
+                <div><span class="rotulo">Acesso:</span> <span class="valor">Nível <%=usu.getNivelacesso()%></span></div>
             </div>
             <button onclick="window.location.href='principal.html'">Prosseguir</button>
         </div>
